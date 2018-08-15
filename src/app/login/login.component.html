@@ -1,0 +1,21 @@
+<div *ngIf="auth.user | async; then logIn else guest">
+</div>
+<ng-template #logIn>
+  {{auth.checker()}}
+  
+</ng-template>
+
+<ng-template #guest>
+  <div class="container">
+    <div class="login-form">
+      <p>Zaloguj się</p>
+
+      <button (click)="auth.googleLogin()">
+        <i class="fa fa-google"></i>  Google
+      </button>
+      <button (click)="auth.facebookLogin()">
+        <i class="fa fa-google"></i>  Facebook
+      </button> 
+  </div> 
+  </div> 
+</ng-template>

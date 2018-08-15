@@ -25,3 +25,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+# gymApp / gymStat
+Apka do zliczania objętości treningowej i ogólnych statystyk. Angular6, AngularFire5, FireStore
+>>>>>>> 765bddc3e9b3ddf2ed1ff25fd0cf3700e54516ed

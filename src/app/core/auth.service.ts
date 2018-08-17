@@ -22,7 +22,8 @@ export interface User {
 export class AuthService {
 
   user: Observable<User>;
-
+  userData: User;
+  error: any;
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
@@ -33,12 +34,14 @@ export class AuthService {
       this.user = this.afAuth.authState.pipe(
         switchMap(user => {
           if (user) {
+           
             return this.afs.doc<User>(`users/${user.uid}`).valueChanges()
           } else {
             return of(null)
           }
         })
       )
+     
     }
   
   facebookLogin(){
@@ -51,11 +54,18 @@ export class AuthService {
     const provider = new auth.GoogleAuthProvider()
     return this.oAuthLogin(provider);
   }
+  check(){
+    this.router.navigate(['/profile']);
+  }
 
   private oAuthLogin(provider) {
     return this.afAuth.auth.signInWithPopup(provider)
-      .then((credential) => {
-        this.updateUserData(credential.user)
+      .then((success) => {
+        this.updateUserData(success.user)
+        this.router.navigate(['/profile']);
+      }).catch(
+        (err) => {
+        this.error = err;
       })
   }
 
@@ -68,14 +78,10 @@ export class AuthService {
       displayName: user.displayName,
       photoURL: user.photoURL+"?height=300"
     }
-
+    //this.userData = user;
     return userRef.set(data, { merge: true })
 
   }
-  checker(){
-    this.router.navigate(['/profile']);
-  }
-
   signOut() {
     this.afAuth.auth.signOut().then(() => {
         this.router.navigate(['/']);
@@ -91,7 +97,7 @@ export class AuthService {
       weight:weight,
       height:height
     }
-    
+
     return userRef.set(data, { merge: true })
   }
 }

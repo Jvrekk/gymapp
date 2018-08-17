@@ -1,10 +1,9 @@
-<div *ngIf="auth.user | async; then logIn else guest">
+<div *ngIf="auth.user | async; then authenticated else guest">
+  <!-- template will replace this div -->
 </div>
-<ng-template #logIn>
-  {{auth.checker()}}
-  
+<ng-template #authenticated>
+  {{auth.check()}}
 </ng-template>
-
 <ng-template #guest>
   <div class="container">
     <div class="login-form">
@@ -16,6 +15,6 @@
       <button (click)="auth.facebookLogin()">
         <i class="fa fa-google"></i>  Facebook
       </button> 
-  </div> 
+    </div> 
   </div> 
 </ng-template>

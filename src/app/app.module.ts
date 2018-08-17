@@ -13,6 +13,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './core/auth.guard';
 import { SettingsComponent } from './settings/settings.component';
+import { StatsComponent } from './stats/stats.component';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { SettingsComponent } from './settings/settings.component';
     FormsModule,
     BrowserAnimationsModule
   ],
-  declarations: [ AppComponent, UserProfileComponent, LoginComponent, SettingsComponent ],
+  declarations: [ AppComponent, UserProfileComponent, LoginComponent, SettingsComponent, StatsComponent ],
   providers: [AuthGuard],
   bootstrap: [ AppComponent ]
 })

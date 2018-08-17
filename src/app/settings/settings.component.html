@@ -1,26 +1,27 @@
+
 <div class="container" *ngIf="auth.user | async as user">
   <div class="settings">
     <h1>Ustawienia</h1>
     <div class="group">  
-      <input id="height" type="text"  #nick value="{{user.displayName}}">
+      <input id="height" type="text"  #nick value="{{user.displayName}}" autocomplete="off">
       <span class="highlight"></span>
       <span class="bar"></span>
       <label>Nick</label>
     </div>
     <div class="group">  
-      <input id="height" type="number" #height value="{{user.height}}">
+      <input id="height" type="number" #height value="{{user.height}}" autocomplete="off">
       <span class="highlight"></span>
       <span class="bar"></span>
       <label>Wzrost</label>
     </div>
     <div class="group"> 
-      <input id="weight" type="number" #weight value="{{user.weight}}">
+      <input id="weight" type="number" #weight value="{{user.weight}}" autocomplete="off">
       <span class="highlight"></span>
       <span class="bar"></span>
       <label>Waga</label>
     </div>
     <button routerLink="/profile" routerLinkActive="active"type="submit">Wróć</button>
-    <button id="button" (click)="auth.setData(user, nick.value, height.value, weight.value)"  type="submit">Zapisz</button>
+    <button id="button" (click)="submit(); auth.setData(user, nick.value, height.value, weight.value); "  type="submit">Zapisz</button>
   </div>
   
 </div>
